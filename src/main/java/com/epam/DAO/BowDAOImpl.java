@@ -6,6 +6,7 @@ import com.epam.entity.Bow;
 import com.epam.service.InputServiceImpl;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,17 +25,17 @@ public class BowDAOImpl implements AmmunitionDAO {
     }
 
     public Set<Bow> getByPrice() {
-        double[] priceRange = new InputServiceImpl().getPriceRange();
+        ArrayList<Double> priceRange = new InputServiceImpl().getPriceRange();
         return getByPassedPrice(priceRange);
     }
 
-    public Set<Bow> getByPassedPrice(double[] priceRange) {
+    public Set<Bow> getByPassedPrice(ArrayList<Double> priceRange) {
         Set<Bow> bows = new HashSet<>();
         try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
             PreparedStatement stmt = connection.prepareStatement("select id, name, price, tax, weigth, material, form" +
                     " from equipment.bow where price between ? and ?");
-            stmt.setDouble(1, priceRange[0]);
-            stmt.setDouble(2, priceRange[1]);
+            stmt.setDouble(1, priceRange.get(0));
+            stmt.setDouble(2, priceRange.get(1));
             ResultSet rs = stmt.executeQuery();
             addObjToSet(bows, rs);
         } catch (SQLException e) {

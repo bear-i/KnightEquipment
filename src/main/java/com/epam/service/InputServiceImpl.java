@@ -1,18 +1,19 @@
 package com.epam.service;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class InputServiceImpl implements InputService {
     private static final String WRONG_NUMBER_FORMAT = "Wrong number format, try again:";
     private Scanner scanner = new Scanner(System.in);
 
-    public double[] getPriceRange() {
-        double[] priceRange = new double[2];
+    public ArrayList<Double> getPriceRange() {
+        ArrayList<Double> priceRange = new ArrayList<>();
         try {
             System.out.println("Enter minimal price: ");
-            priceRange[0] = Double.parseDouble(scanner.nextLine());
+            priceRange.add(Double.parseDouble(scanner.nextLine()));
             System.out.println("Enter maximal price: ");
-            priceRange[1] = Double.parseDouble(scanner.nextLine());
+            priceRange.add(Double.parseDouble(scanner.nextLine()));
         } catch (NumberFormatException e) {
             System.out.println(WRONG_NUMBER_FORMAT);
             return getPriceRange();

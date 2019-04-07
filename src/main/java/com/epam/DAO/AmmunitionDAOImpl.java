@@ -15,7 +15,7 @@ public class AmmunitionDAOImpl implements AmmunitionDAO {
     }
 
     public Set<Ammunition> getByPrice() {
-        double[] priceRange = new InputServiceImpl().getPriceRange();
+        ArrayList<Double> priceRange = new InputServiceImpl().getPriceRange();
         Set<Ammunition> ammun = new HashSet<>();
         ammun.addAll(new WeaponDAOImpl().getByPassedPrice(priceRange));
         ammun.addAll(new ArmorDAOImpl().getByPassedPrice(priceRange));

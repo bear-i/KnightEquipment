@@ -30,7 +30,7 @@ public class AppServiceImpl implements AppService {
     @Override
     public void chooseOptionFromStartingMenu() {
         do {
-            menuService.showStartingMenu();
+            System.out.println(menuService.getStartingMenu());
             switch (inputService.getOption()) {
                 case 1:
                     show(ammunitionDAO.getAll());
@@ -58,7 +58,7 @@ public class AppServiceImpl implements AppService {
 
     @Override
     public void chooseUnitOption(AmmunitionDAO accessObj) {
-        menuService.showAmmunitionUnitMenu();
+        System.out.println(menuService.getAmmunitionUnitMenu());
         switch (inputService.getOption()) {
             case 1:
                 buyUnit(accessObj.getAll());
@@ -104,7 +104,7 @@ public class AppServiceImpl implements AppService {
     @Override
     public void sortBy(AmmunitionDAO accessObj) {
         Set<? extends Ammunition> unitsOfAmmunition = accessObj.getAll();
-        menuService.showSort();
+        System.out.println(menuService.getSortMenu());
         switch (inputService.getOption()) {
             case 1:
                 show(sortService.sortBy(unitsOfAmmunition, AmmunitionSpec.id));

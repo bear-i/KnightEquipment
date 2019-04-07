@@ -2,6 +2,8 @@ package com.epam.DAO;
 
 import com.epam.entity.Weapon;
 import com.epam.service.InputServiceImpl;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,11 +18,11 @@ public class WeaponDAOImpl implements AmmunitionDAO {
     }
 
     public  Set<Weapon> getByPrice() {
-        double[] priceRange = new InputServiceImpl().getPriceRange();
+        ArrayList<Double> priceRange = new InputServiceImpl().getPriceRange();
         return getByPassedPrice(priceRange);
     }
 
-    public  Set<Weapon> getByPassedPrice(double [] priceRange){
+    public  Set<Weapon> getByPassedPrice(ArrayList<Double> priceRange){
         Set<Weapon> priceRangeWeapon = new HashSet<>();
         priceRangeWeapon.addAll(new BowDAOImpl().getByPassedPrice(priceRange));
         priceRangeWeapon.addAll(new SwordDAOImpl().getByPassedPrice(priceRange));
