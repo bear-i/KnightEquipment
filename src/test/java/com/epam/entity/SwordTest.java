@@ -36,6 +36,6 @@ public class SwordTest {
                 "Sword", 0.05, SwordLength.Long);
         Ammunition sword2 = new Sword(755, 900.0, 5, AmmunitionMaterial.Cooper,
                 "Sword", 0.05, SwordLength.Long);
-        assertNotSame(sword1, sword1);
+        assertNotSame(sword1, sword2);
     }
 }
