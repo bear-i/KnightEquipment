@@ -16,39 +16,39 @@ public class AmmunitionTest {
     }
 
     @Test
-    public void correct_If_Has_Id() {
+    public void correctIfHasId() {
         assertThat(ammunition, hasProperty("id"));
     }
 
     @Test
-    public void correct_If_Has_Price() {
+    public void correctIfHasPrice() {
         assertThat(ammunition, hasProperty("price"));
     }
 
     @Test
-    public void correct_If_Has_Weigth() {
+    public void correctIfHasWeigth() {
         assertThat(ammunition, hasProperty("weigth"));
     }
 
     @Test
-    public void correct_If_Has_Name() {
+    public void correctIfHasName() {
         assertThat(ammunition, hasProperty("name"));
     }
 
     @Test
-    public void correct_If_Has_Material() {
+    public void correctIfHasMaterial() {
         assertThat(ammunition, hasProperty("material"));
     }
 
     @Test
-    public void if_Equals_Than_Correct() {
+    public void ifEqualsThanCorrect() {
         Ammunition ammun1 = new Ammunition(808, 2000.0, 50, AmmunitionMaterial.Cooper, "Helmet");
         Ammunition ammun2 = new Ammunition(808, 2000.0, 50, AmmunitionMaterial.Cooper, "Helmet");
         assertEquals(ammun1, ammun2);
     }
 
     @Test
-    public void if_Not_Same_Than_Correct() {
+    public void ifNotSameThanCorrect() {
         Ammunition ammun1 = new Ammunition(808, 2000.0, 50, AmmunitionMaterial.Cooper, "Helmet");
         Ammunition ammun2 = new Ammunition(808, 2000.0, 50, AmmunitionMaterial.Cooper, "Helmet");
         assertNotSame(ammun1, ammun2);

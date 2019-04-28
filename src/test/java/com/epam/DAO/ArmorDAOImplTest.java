@@ -1,7 +1,10 @@
 package com.epam.DAO;
 
+import org.hamcrest.Matchers;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.util.Set;
 
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.*;
@@ -11,11 +14,16 @@ public class ArmorDAOImplTest {
 
     @BeforeClass
     public static void onlyOnce() {
-        armorAccessObj = new ArmorDAOImpl();
+        armorAccessObj = ArmorDAOSingletonImpl.getInstance();
     }
 
     @Test
-    public void get_All_Method_Should_Not_Return_Null() {
+    public void getAllMethodShouldNotReturnNull() {
         assertThat(armorAccessObj.getAll(), notNullValue());
+    }
+
+    @Test
+    public void getAllMethodShouldReturnSet() {
+        assertThat(armorAccessObj.getAll(), Matchers.instanceOf(Set.class));
     }
 }

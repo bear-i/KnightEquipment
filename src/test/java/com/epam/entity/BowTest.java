@@ -17,12 +17,12 @@ public class BowTest {
     }
 
     @Test
-    public void correct_If_Has_Material() {
+    public void correctIfHasMaterial() {
         assertThat(bow, hasProperty("bowForm"));
     }
 
     @Test
-    public void if_Equals_Than_Correct() {
+    public void ifEqualsThanCorrect() {
         Ammunition bow1 = new Bow(905, 400.0, 9, AmmunitionMaterial.Cooper,
                 "Bow", 0.05, BowForm.Flat);
         Ammunition bow2 = new Bow(905, 400.0, 9, AmmunitionMaterial.Cooper,
@@ -31,7 +31,7 @@ public class BowTest {
     }
 
     @Test
-    public void if_Not_Same_Than_Correct() {
+    public void ifNotSameThanCorrect() {
         Ammunition bow1 = new Bow(905, 400.0, 9, AmmunitionMaterial.Cooper,
                 "Bow", 0.05, BowForm.Flat);
         Ammunition bow2 = new Bow(905, 400.0, 9, AmmunitionMaterial.Cooper,

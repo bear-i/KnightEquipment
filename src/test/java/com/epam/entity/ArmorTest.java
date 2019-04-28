@@ -17,17 +17,16 @@ public class ArmorTest {
     }
 
     @Test
-    public void if_Equals_Than_Correct() {
+    public void ifEqualsThanCorrect() {
         Ammunition armor1 = new Armor(905, 400.0, 9, AmmunitionMaterial.Cooper, "Armor");
         Ammunition armor2 = new Armor(905, 400.0, 9, AmmunitionMaterial.Cooper, "Armor");
         assertEquals(armor1, armor2);
     }
 
     @Test
-    public void if_Not_Same_Than_Correct() {
+    public void ifNotSameThanCorrect() {
         Ammunition armor1 = new Armor(905, 400.0, 9, AmmunitionMaterial.Cooper, "Armor");
         Ammunition armor2 = new Armor(905, 400.0, 9, AmmunitionMaterial.Cooper, "Armor");
         assertNotSame(armor1, armor2);
     }
-
 }

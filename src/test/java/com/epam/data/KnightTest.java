@@ -1,6 +1,5 @@
 package com.epam.data;
 
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,33 +15,33 @@ public class KnightTest {
     }
 
     @Test
-    public void correct_If_Has_Balance() {
+    public void correctIfHasBalance() {
         assertThat(knight, hasProperty("balance"));
     }
 
     @Test
-    public void should_Have_List_Of_Bought_Ammunition() {
+    public void shouldHaveListOfBoughtAmmunition() {
         assertThat(knight, hasProperty("boughtAmmunition"));
     }
 
     @Test
-    public void bought_Ammunition_Should_Not_Be_null() {
+    public void boughtAmmunitionShouldNotBeNull() {
         assertThat(knight.getBoughtAmmunition(), notNullValue());
     }
 
     @Test
-    public void if_toString_Correct() {
+    public void ifToStringCorrect() {
         knight.setBalance(1000);
         assertThat(knight, hasToString("Balance: 1000.0, bought ammunition: []"));
     }
 
     @Test
-    public void if_Equals_Than_Correct() {
+    public void ifEqualsThanCorrect() {
         assertEquals(new Knight(2000.0), new Knight(2000.0));
     }
 
     @Test
-    public void if_Not_Same_Than_Correct() {
+    public void ifNotSameThanCorrect() {
         assertNotSame(new Knight(2000.0), new Knight(2000.0));
     }
 }

@@ -17,12 +17,12 @@ public class SpearTest {
     }
 
     @Test
-    public void correct_If_Has_Material() {
+    public void correctIfHasMaterial() {
         assertThat(spear, hasProperty("spearType"));
     }
 
     @Test
-    public void if_Equals_Than_Correct() {
+    public void ifEqualsThanCorrect() {
         Ammunition spear1 = new Spear(905, 400.0, 9, AmmunitionMaterial.Cooper,
                 "Spear", 0.03, SpearType.Throwing);
         Ammunition spear2 = new Spear(905, 400.0, 9, AmmunitionMaterial.Cooper,
@@ -31,7 +31,7 @@ public class SpearTest {
     }
 
     @Test
-    public void if_Not_Same_Than_Correct() {
+    public void ifNotSameThanCorrect() {
         Ammunition spear1 = new Spear(905, 400.0, 9, AmmunitionMaterial.Cooper,
                 "Spear", 0.03, SpearType.Throwing);
         Ammunition spear2 = new Spear(905, 400.0, 9, AmmunitionMaterial.Cooper,

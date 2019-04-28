@@ -8,25 +8,19 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.*;
 
 public class ComparatorFactoryTest {
-    private static ComparatorFactory comparatorFactory;
 
-    @BeforeClass
-    public static void onlyOnce() {
-        comparatorFactory = new ComparatorFactory();
+    @Test
+    public void idComparatorShouldNotBeNull() {
+        assertThat(ComparatorFactory.getComparator(AmmunitionSpec.id), notNullValue());
     }
 
     @Test
-    public void id_Comparator_Should_Not_Be_Null() {
-        assertThat(comparatorFactory.getComparator(AmmunitionSpec.id), notNullValue());
+    public void priceComparatorShouldNotBeNull() {
+        assertThat(ComparatorFactory.getComparator(AmmunitionSpec.price), notNullValue());
     }
 
     @Test
-    public void price_Comparator_Should_Not_Be_Null() {
-        assertThat(comparatorFactory.getComparator(AmmunitionSpec.price), notNullValue());
-    }
-
-    @Test
-    public void weigth_Comparator_Should_Not_Be_Null() {
-        assertThat(comparatorFactory.getComparator(AmmunitionSpec.weigth), notNullValue());
+    public void weigthComparatorShouldNotBeNull() {
+        assertThat(ComparatorFactory.getComparator(AmmunitionSpec.weigth), notNullValue());
     }
 }

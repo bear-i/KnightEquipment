@@ -1,6 +1,5 @@
 package com.epam.DAO;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -9,12 +8,12 @@ public class ConnectionFactory {
     private static final String user = "postgres";
     private static final String password = "postgresartanis";
     private static ConnectionFactory connectionFactory = null;
-    private static Connection connection = null;
+    private static java.sql.Connection connection = null;
 
-    private ConnectionFactory(){
+    private ConnectionFactory() {
     }
 
-    public Connection getConnection() throws SQLException {
+    public java.sql.Connection getConnection() throws SQLException {
         connection = DriverManager.getConnection(JDBC_URL, user, password);
         return connection;
     }
@@ -22,7 +21,11 @@ public class ConnectionFactory {
 
     public static ConnectionFactory getInstance() {
         if (connectionFactory == null) {
-            connectionFactory = new ConnectionFactory();
+            synchronized (ConnectionFactory.class) {
+                if (connectionFactory == null) {
+                    connectionFactory = new ConnectionFactory();
+                }
+            }
         }
         return connectionFactory;
     }

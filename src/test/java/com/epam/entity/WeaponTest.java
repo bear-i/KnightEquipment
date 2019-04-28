@@ -16,19 +16,19 @@ public class WeaponTest {
     }
 
     @Test
-    public void correct_If_Has_Id() {
+    public void correctIfHasId() {
         assertThat(weapon, hasProperty("purchaseTax"));
     }
 
     @Test
-    public void if_Equals_Than_Correct() {
+    public void ifEqualsThanCorrect() {
         Ammunition weapon1 = new Weapon(808, 2000.0, 50, AmmunitionMaterial.Cooper, "Helmet", 0.15);
         Ammunition weapon2 = new Weapon(808, 2000.0, 50, AmmunitionMaterial.Cooper, "Helmet", 0.15);
         assertEquals(weapon1, weapon2);
     }
 
     @Test
-    public void if_Not_Same_Than_Correct() {
+    public void ifNotSameThanCorrect() {
         Ammunition weapon1 = new Weapon(808, 2000.0, 50, AmmunitionMaterial.Cooper, "Helmet", 0.15);
         Ammunition weapon2 = new Weapon(808, 2000.0, 50, AmmunitionMaterial.Cooper, "Helmet", 0.15);
         assertNotSame(weapon1, weapon2);

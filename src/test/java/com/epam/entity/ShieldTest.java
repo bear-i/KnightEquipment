@@ -17,12 +17,12 @@ public class ShieldTest {
     }
 
     @Test
-    public void correct_If_Has_Material() {
+    public void correctIfHasMaterial() {
         assertThat(shield, hasProperty("shieldForm"));
     }
 
     @Test
-    public void if_Equals_Than_Correct() {
+    public void ifEqualsThanCorrect() {
         Ammunition shield1 = new Shield(506, 1550.0, 9, AmmunitionMaterial.Bronze,
                 "Shield", 0.25, ShieldForm.Almondshaped);
         Ammunition shield2 = new Shield(506, 1550.0, 9, AmmunitionMaterial.Bronze,
@@ -31,7 +31,7 @@ public class ShieldTest {
     }
 
     @Test
-    public void if_Not_Same_Than_Correct() {
+    public void ifNotSameThanCorrect() {
         Ammunition shield1 = new Shield(506, 1550.0, 9, AmmunitionMaterial.Bronze,
                 "Shield", 0.25, ShieldForm.Almondshaped);
         Ammunition shield2 = new Shield(506, 1550.0, 9, AmmunitionMaterial.Bronze,

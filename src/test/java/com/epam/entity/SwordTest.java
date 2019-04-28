@@ -17,12 +17,12 @@ public class SwordTest {
     }
 
     @Test
-    public void correct_If_Has_Material() {
+    public void correctIfHasMaterial() {
         assertThat(sword, hasProperty("swordLength"));
     }
 
     @Test
-    public void if_Equals_Than_Correct() {
+    public void ifEqualsThanCorrect() {
         Ammunition sword1 = new Sword(755, 900.0, 5, AmmunitionMaterial.Cooper,
                 "Sword", 0.05, SwordLength.Long);
         Ammunition sword2 = new Sword(755, 900.0, 5, AmmunitionMaterial.Cooper,
@@ -31,7 +31,7 @@ public class SwordTest {
     }
 
     @Test
-    public void if_Not_Same_Than_Correct() {
+    public void ifNotSameThanCorrect() {
         Ammunition sword1 = new Sword(755, 900.0, 5, AmmunitionMaterial.Cooper,
                 "Sword", 0.05, SwordLength.Long);
         Ammunition sword2 = new Sword(755, 900.0, 5, AmmunitionMaterial.Cooper,

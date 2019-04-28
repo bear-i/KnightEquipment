@@ -15,21 +15,21 @@ public class MenuServiceImplTest {
     }
 
     @Test
-    public void starting_Menu_Should_Be_Equal_To() {
+    public void startingMenuShouldBeEqualTo() {
         String expected = "\nMain menu.\n1.Show all ammunition.\n2.Show armors.\n3.Show weapons.\n4.Show bought ammunition.\n0.Exit\n";
         String real = menuService.getStartingMenu();
         assertThat(real, equalTo(expected));
     }
 
     @Test
-    public void sort_Menu_Should_Be_Equal_To() {
+    public void sortMenuShouldBeEqualTo() {
         String expected = "Choose you option: \n1.Sort by id.\n2.Sort by price.\n3.Sort by weigth\n4.To main menu.\n0.Exit.\n";
         String real = menuService.getSortMenu();
         assertThat(real, equalTo(expected));
     }
 
     @Test
-    public void unit_Menu_Should_Be_Equal_To() {
+    public void unitMenuShoulBeEqualTo() {
         String expected = "Choose your option:\n1.Buy.\n2.Show within the price range.\n3.Sort by...\n4.To main menu\n0.Exit.\n";
         String real = menuService.getAmmunitionUnitMenu();
         assertThat(real, equalTo(expected));

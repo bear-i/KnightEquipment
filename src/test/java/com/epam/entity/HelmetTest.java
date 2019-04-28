@@ -17,12 +17,12 @@ public class HelmetTest {
     }
 
     @Test
-    public void correct_If_Has_Material() {
+    public void correctIfHasMaterial() {
         assertThat(helmet, hasProperty("helmetForm"));
     }
 
     @Test
-    public void if_Equals_Than_Correct() {
+    public void ifEqualsThanCorrect() {
         Ammunition helmet1 = new Helmet(905, 400.0, 9, AmmunitionMaterial.Cooper,
                 "Helmet", HelmetForm.Conical);
         Ammunition helmet2 = new Helmet(905, 400.0, 9, AmmunitionMaterial.Cooper,
@@ -31,7 +31,7 @@ public class HelmetTest {
     }
 
     @Test
-    public void if_Not_Same_Than_Correct() {
+    public void ifNotSameThanCorrect() {
         Ammunition helmet1 = new Helmet(905, 400.0, 9, AmmunitionMaterial.Cooper,
                 "Helmet", HelmetForm.Conical);
         Ammunition helmet2 = new Helmet(905, 400.0, 9, AmmunitionMaterial.Cooper,

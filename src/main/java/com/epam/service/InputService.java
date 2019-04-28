@@ -1,11 +1,14 @@
 package com.epam.service;
 
-import java.util.ArrayList;
+import java.util.Map;
 
 public interface InputService {
-    ArrayList<Double> getPriceRange();
+    Map<String, Double> getPriceRange();
+
     double getBalance();
+
     int getOption();
+
     int getId();
 
 }

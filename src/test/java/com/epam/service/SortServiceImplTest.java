@@ -22,12 +22,12 @@ public class SortServiceImplTest {
     }
 
     @Test
-    public void sorted_Set_Should_Not_Be_Null() {
+    public void sortedSetShouldNotBeNull() {
         assertNotNull("Should not be null", sortService.sortBy(ammunitions, AmmunitionSpec.id));
     }
 
     @Test
-    public void sorted_Set_Should_Not_Be_Null_Using_Matcher() {
+    public void sortedSetShouldNotBeNullUsingMatcher() {
         assertThat(sortService.sortBy(ammunitions, AmmunitionSpec.price), notNullValue());
     }
 }

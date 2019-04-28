@@ -7,10 +7,16 @@ import java.util.Set;
 
 public interface AppService {
     void setKnightBalance();
+
     void chooseOptionFromStartingMenu();
+
     void chooseUnitOption(AmmunitionDAO accessObj);
+
     void sortBy(AmmunitionDAO accessObj);
+
     void showWithinPriceRange(AmmunitionDAO accessObj);
+
     void buyUnit(Set<? extends Ammunition> ammunitionSet);
+
     void showBoughtAmmunition();
 }

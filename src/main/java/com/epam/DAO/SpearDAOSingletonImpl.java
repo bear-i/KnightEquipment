@@ -6,17 +6,23 @@ import com.epam.entity.Spear;
 import com.epam.service.InputServiceImpl;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
-public class SpearDAOImpl implements AmmunitionDAO {
+public class SpearDAOSingletonImpl implements AmmunitionDAO {
+    private static SpearDAOSingletonImpl INSTANCE = null;
+
+    private SpearDAOSingletonImpl() {
+
+    }
 
     public Set<Spear> getAll() {
         Set<Spear> spears = new HashSet<>();
-        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+        try (java.sql.Connection connection = ConnectionFactory.getInstance().getConnection()) {
+            ResultSet rs;
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("select id, name, price, tax, weigth, material, kind from equipment.spear ");
+            rs = stmt.executeQuery("select id, name, price, tax, weigth, material, kind from equipment.spear ");
             addObjToSet(spears, rs);
         } catch (SQLException e) {
             System.out.println("Failed connection: " + e);
@@ -25,21 +31,22 @@ public class SpearDAOImpl implements AmmunitionDAO {
     }
 
     public Set<Spear> getByPrice() {
-        ArrayList<Double> priceRange = new InputServiceImpl().getPriceRange();
+        Map<String, Double> priceRange = new InputServiceImpl().getPriceRange();
         return getByPassedPrice(priceRange);
     }
 
-    public Set<Spear> getByPassedPrice(ArrayList<Double> priceRange) {
+    public Set<Spear> getByPassedPrice(Map<String, Double> priceRange) {
         Set<Spear> spears = new HashSet<>();
-        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+        try (java.sql.Connection connection = ConnectionFactory.getInstance().getConnection()) {
+            ResultSet rs;
             PreparedStatement stmt = connection.prepareStatement("select id, name, price, tax, weigth, material, kind" +
                     " from equipment.spear where price between ? and ?");
-            stmt.setDouble(1, priceRange.get(0));
-            stmt.setDouble(2, priceRange.get(1));
-            ResultSet rs = stmt.executeQuery();
+            stmt.setDouble(1, priceRange.get("min"));
+            stmt.setDouble(2, priceRange.get("max"));
+            rs = stmt.executeQuery();
             addObjToSet(spears, rs);
         } catch (SQLException e) {
-            System.out.println("Connection failed");
+            System.out.println("ConnectionFactory failed");
         }
         return spears;
     }
@@ -51,5 +58,20 @@ public class SpearDAOImpl implements AmmunitionDAO {
                     , rs.getString("name"), rs.getDouble("tax"),
                     SpearType.valueOf(rs.getString("kind"))));
         }
+    }
+
+    public static SpearDAOSingletonImpl getInstance() {
+        if (INSTANCE == null) {
+            synchronized (ArmorPlatingDAOSingletonImpl.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new SpearDAOSingletonImpl();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
+    protected Object readResolve() {
+        return INSTANCE;
     }
 }

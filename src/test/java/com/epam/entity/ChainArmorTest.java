@@ -17,12 +17,12 @@ public class ChainArmorTest {
     }
 
     @Test
-    public void correct_If_Has_Material() {
+    public void correctIfHasMaterial() {
         assertThat(chainArmor, hasProperty("ringsSize"));
     }
 
     @Test
-    public void if_Equals_Than_Correct() {
+    public void ifEqualsThanCorrect() {
         Ammunition chain1 = new ChainArmor(905, 400.0, 9, AmmunitionMaterial.Cooper,
                 "Chain", RingsSize.Large);
         Ammunition chain2 = new ChainArmor(905, 400.0, 9, AmmunitionMaterial.Cooper,
@@ -31,7 +31,7 @@ public class ChainArmorTest {
     }
 
     @Test
-    public void if_Not_Same_Than_Correct() {
+    public void ifNotSameThanCorrect() {
         Ammunition chain1 = new ChainArmor(905, 400.0, 9, AmmunitionMaterial.Cooper,
                 "Chain", RingsSize.Large);
         Ammunition chain2 = new ChainArmor(905, 400.0, 9, AmmunitionMaterial.Cooper,

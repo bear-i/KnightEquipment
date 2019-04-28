@@ -18,12 +18,12 @@ public class ArmorPlatingTest {
     }
 
     @Test
-    public void correct_If_Has_Material() {
+    public void correctIfHasMaterial() {
         assertThat(armorplating, hasProperty("kind"));
     }
 
     @Test
-    public void if_Equals_Than_Correct() {
+    public void ifEqualsThanCorrect() {
         Ammunition armorplating1 = new ArmorPlating(905, 400.0, 9, AmmunitionMaterial.Cooper,
                 "Armor", ArmorPlatingKind.Full);
         Ammunition armorplating2 = new ArmorPlating(905, 400.0, 9, AmmunitionMaterial.Cooper,
@@ -32,7 +32,7 @@ public class ArmorPlatingTest {
     }
 
     @Test
-    public void if_Not_Same_Than_Correct() {
+    public void ifNotSameThanCorrect() {
         Ammunition armorplating1 = new ArmorPlating(905, 400.0, 9, AmmunitionMaterial.Cooper,
                 "Armor", ArmorPlatingKind.Full);
         Ammunition armorplating2 = new ArmorPlating(905, 400.0, 9, AmmunitionMaterial.Cooper,

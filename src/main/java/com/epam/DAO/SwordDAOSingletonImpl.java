@@ -6,17 +6,23 @@ import com.epam.entity.Sword;
 import com.epam.service.InputServiceImpl;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
-public class SwordDAOImpl implements AmmunitionDAO {
+public class SwordDAOSingletonImpl implements AmmunitionDAO {
+    private static SwordDAOSingletonImpl INSTANCE = null;
+
+    private SwordDAOSingletonImpl() {
+
+    }
 
     public Set<Sword> getAll() {
         Set<Sword> swords = new HashSet<>();
-        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+        try (java.sql.Connection connection = ConnectionFactory.getInstance().getConnection()) {
+            ResultSet rs;
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("select id, name, price, tax, weigth, material, length  from equipment.sword ");
+            rs = stmt.executeQuery("select id, name, price, tax, weigth, material, length  from equipment.sword ");
             addObjToSet(swords, rs);
         } catch (SQLException e) {
             System.out.println("Failed connection: " + e);
@@ -25,21 +31,22 @@ public class SwordDAOImpl implements AmmunitionDAO {
     }
 
     public Set<Sword> getByPrice() {
-        ArrayList<Double> priceRange = new InputServiceImpl().getPriceRange();
+        Map<String, Double> priceRange = new InputServiceImpl().getPriceRange();
         return getByPassedPrice(priceRange);
     }
 
-    public Set<Sword> getByPassedPrice(ArrayList<Double> priceRange) {
+    public Set<Sword> getByPassedPrice(Map<String, Double> priceRange) {
         Set<Sword> swords = new HashSet<>();
-        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+        try (java.sql.Connection connection = ConnectionFactory.getInstance().getConnection()) {
+            ResultSet rs;
             PreparedStatement stmt = connection.prepareStatement("select id, name, price, tax, weigth, material, length" +
                     " from equipment.sword where price between ? and ?");
-            stmt.setDouble(1, priceRange.get(0));
-            stmt.setDouble(2, priceRange.get(1));
-            ResultSet rs = stmt.executeQuery();
+            stmt.setDouble(1, priceRange.get("min"));
+            stmt.setDouble(2, priceRange.get("max"));
+            rs = stmt.executeQuery();
             addObjToSet(swords, rs);
         } catch (SQLException e) {
-            System.out.println("Connection failed");
+            System.out.println("ConnectionFactory failed");
         }
         return swords;
     }
@@ -51,5 +58,20 @@ public class SwordDAOImpl implements AmmunitionDAO {
                     , rs.getString("name"), rs.getDouble("tax"),
                     SwordLength.valueOf(rs.getString("length"))));
         }
+    }
+
+    public static SwordDAOSingletonImpl getInstance() {
+        if (INSTANCE == null) {
+            synchronized (ArmorPlatingDAOSingletonImpl.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new SwordDAOSingletonImpl();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
+    protected Object readResolve() {
+        return INSTANCE;
     }
 }

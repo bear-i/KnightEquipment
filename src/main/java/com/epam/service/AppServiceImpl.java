@@ -1,9 +1,9 @@
 package com.epam.service;
 
 import com.epam.DAO.AmmunitionDAO;
-import com.epam.DAO.AmmunitionDAOImpl;
-import com.epam.DAO.ArmorDAOImpl;
-import com.epam.DAO.WeaponDAOImpl;
+import com.epam.DAO.AmmunitionDAOSingletonImpl;
+import com.epam.DAO.ArmorDAOSingletonImpl;
+import com.epam.DAO.WeaponDAOSingletonImpl;
 import com.epam.ammunitionTypes.AmmunitionSpec;
 import com.epam.data.Knight;
 import com.epam.entity.Ammunition;
@@ -14,9 +14,9 @@ import java.util.Set;
 public class AppServiceImpl implements AppService {
     private Knight knight = new Knight();
     private boolean quit = false;
-    private AmmunitionDAO ammunitionDAO = new AmmunitionDAOImpl();
-    private AmmunitionDAO weaponDAO = new WeaponDAOImpl();
-    private AmmunitionDAO armorDAO = new ArmorDAOImpl();
+    private AmmunitionDAO ammunitionDAO = AmmunitionDAOSingletonImpl.getInstance();
+    private AmmunitionDAO weaponDAO = WeaponDAOSingletonImpl.getInstance();
+    private AmmunitionDAO armorDAO = ArmorDAOSingletonImpl.getInstance();
     private InputService inputService = new InputServiceImpl();
     private MenuService menuService = new MenuServiceImpl();
     private SortService sortService = new SortServiceImpl();
