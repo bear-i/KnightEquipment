@@ -9,7 +9,7 @@ import java.util.Set;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.*;
 
-public class ChainArmorDAOImplTest {
+public class ChainArmorDAOSingletonImplTest {
     private static AmmunitionDAO chainArmorAccessObj;
 
     @BeforeClass

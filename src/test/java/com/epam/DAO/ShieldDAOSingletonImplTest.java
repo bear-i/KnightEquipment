@@ -9,21 +9,21 @@ import java.util.Set;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.*;
 
-public class ArmorDAOImplTest {
-    private static AmmunitionDAO armorAccessObj;
+public class ShieldDAOSingletonImplTest {
+    private static AmmunitionDAO shieldAccessObj;
 
     @BeforeClass
     public static void onlyOnce() {
-        armorAccessObj = ArmorDAOSingletonImpl.getInstance();
+        shieldAccessObj = ShieldDAOSingletonImpl.getInstance();
     }
 
     @Test
-    public void getAllMethodShouldNotReturnNull() {
-        assertThat(armorAccessObj.getAll(), notNullValue());
+    public void get_All_Method_Should_Not_Return_Null() {
+        assertThat(shieldAccessObj.getAll(), notNullValue());
     }
 
     @Test
     public void getAllMethodShouldReturnSet() {
-        assertThat(armorAccessObj.getAll(), Matchers.instanceOf(Set.class));
+        assertThat(shieldAccessObj.getAll(), Matchers.instanceOf(Set.class));
     }
 }
