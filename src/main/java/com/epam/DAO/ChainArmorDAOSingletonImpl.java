@@ -18,10 +18,9 @@ public class ChainArmorDAOSingletonImpl implements AmmunitionDAO {
 
     public Set<ChainArmor> getAll() {
         Set<ChainArmor> armorPlating = new HashSet<>();
-        try (java.sql.Connection connection = ConnectionFactory.getInstance().getConnection()) {
-            ResultSet rs;
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
             Statement stmt = connection.createStatement();
-            rs = stmt.executeQuery("select id, name, price, weigth, material, ringssize  from equipment.chainarmor ");
+            ResultSet rs = stmt.executeQuery("select id, name, price, weigth, material, ringssize  from equipment.chainarmor ");
             addObjToSet(armorPlating, rs);
         } catch (SQLException e) {
             System.out.println("Failed connection: " + e);
@@ -36,13 +35,12 @@ public class ChainArmorDAOSingletonImpl implements AmmunitionDAO {
 
     public Set<ChainArmor> getByPassedPrice(Map<String, Double> priceRange) {
         Set<ChainArmor> priceRangeChainArmor = new HashSet<>();
-        try (java.sql.Connection connection = ConnectionFactory.getInstance().getConnection()) {
-            ResultSet rs;
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
             PreparedStatement stmt = connection.prepareStatement("select id, name, price, weigth, material, ringssize" +
                     " from equipment.chainarmor where price between ? and ?");
             stmt.setDouble(1, priceRange.get("min"));
             stmt.setDouble(2, priceRange.get("max"));
-            rs = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
             addObjToSet(priceRangeChainArmor, rs);
         } catch (SQLException e) {
             System.out.println("ConnectionFactory failed");

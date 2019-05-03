@@ -19,10 +19,9 @@ public class BowDAOSingletonImpl implements AmmunitionDAO {
 
     public Set<Bow> getAll() {
         Set<Bow> bows = new HashSet<>();
-        try (java.sql.Connection connection = ConnectionFactory.getInstance().getConnection()) {
-            ResultSet rs;
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
             Statement stmt = connection.createStatement();
-            rs = stmt.executeQuery("select id, name, price, tax, weigth, material, form  from equipment.bow ");
+            ResultSet rs = stmt.executeQuery("select id, name, price, tax, weigth, material, form  from equipment.bow ");
             addObjToSet(bows, rs);
         } catch (SQLException e) {
             System.out.println("Failed connection: " + e);
@@ -37,13 +36,12 @@ public class BowDAOSingletonImpl implements AmmunitionDAO {
 
     public Set<Bow> getByPassedPrice(Map<String, Double> priceRange) {
         Set<Bow> bows = new HashSet<>();
-        try (java.sql.Connection connection = ConnectionFactory.getInstance().getConnection()) {
-            ResultSet rs;
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
             PreparedStatement stmt = connection.prepareStatement("select id, name, price, tax, weigth, material, form" +
                     " from equipment.bow where price between ? and ?");
             stmt.setDouble(1, priceRange.get("min"));
             stmt.setDouble(2, priceRange.get("max"));
-            rs = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
             addObjToSet(bows, rs);
         } catch (SQLException e) {
             System.out.println("ConnectionFactory failed");

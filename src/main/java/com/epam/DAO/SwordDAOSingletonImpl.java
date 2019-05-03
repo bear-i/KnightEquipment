@@ -19,10 +19,9 @@ public class SwordDAOSingletonImpl implements AmmunitionDAO {
 
     public Set<Sword> getAll() {
         Set<Sword> swords = new HashSet<>();
-        try (java.sql.Connection connection = ConnectionFactory.getInstance().getConnection()) {
-            ResultSet rs;
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
             Statement stmt = connection.createStatement();
-            rs = stmt.executeQuery("select id, name, price, tax, weigth, material, length  from equipment.sword ");
+            ResultSet rs = stmt.executeQuery("select id, name, price, tax, weigth, material, length  from equipment.sword ");
             addObjToSet(swords, rs);
         } catch (SQLException e) {
             System.out.println("Failed connection: " + e);
@@ -37,13 +36,12 @@ public class SwordDAOSingletonImpl implements AmmunitionDAO {
 
     public Set<Sword> getByPassedPrice(Map<String, Double> priceRange) {
         Set<Sword> swords = new HashSet<>();
-        try (java.sql.Connection connection = ConnectionFactory.getInstance().getConnection()) {
-            ResultSet rs;
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
             PreparedStatement stmt = connection.prepareStatement("select id, name, price, tax, weigth, material, length" +
                     " from equipment.sword where price between ? and ?");
             stmt.setDouble(1, priceRange.get("min"));
             stmt.setDouble(2, priceRange.get("max"));
-            rs = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
             addObjToSet(swords, rs);
         } catch (SQLException e) {
             System.out.println("ConnectionFactory failed");

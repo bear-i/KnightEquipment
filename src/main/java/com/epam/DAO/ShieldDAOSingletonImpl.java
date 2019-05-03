@@ -19,10 +19,9 @@ public class ShieldDAOSingletonImpl implements AmmunitionDAO {
 
     public Set<Shield> getAll() {
         Set<Shield> shields = new HashSet<>();
-        try (java.sql.Connection connection = ConnectionFactory.getInstance().getConnection()) {
-            ResultSet rs;
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
             Statement stmt = connection.createStatement();
-            rs = stmt.executeQuery("select id, name, price, tax, weigth, material, form  from equipment.shield ");
+            ResultSet rs = stmt.executeQuery("select id, name, price, tax, weigth, material, form  from equipment.shield ");
             addObjToSet(shields, rs);
         } catch (SQLException e) {
             System.out.println("Failed connection: " + e);
@@ -37,13 +36,12 @@ public class ShieldDAOSingletonImpl implements AmmunitionDAO {
 
     public Set<Shield> getByPassedPrice(Map<String, Double> priceRange) {
         Set<Shield> shields = new HashSet<>();
-        try (java.sql.Connection connection = ConnectionFactory.getInstance().getConnection()) {
-            ResultSet rs;
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
             PreparedStatement stmt = connection.prepareStatement("select id, name, price, tax, weigth, material, form" +
                     " from equipment.shield where price between ? and ?");
             stmt.setDouble(1, priceRange.get("min"));
             stmt.setDouble(2, priceRange.get("max"));
-            rs = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
             addObjToSet(shields, rs);
         } catch (SQLException e) {
             System.out.println("ConnectionFactory failed");
